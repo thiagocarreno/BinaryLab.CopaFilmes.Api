@@ -14,18 +14,18 @@ namespace BinaryLab.CopaFilmes.Repositorio
         }
     }
 
-    public class Repositorio<TEntidade, TKey> : IRepositorio<TEntidade, TKey>
-        where TEntidade : class, IEntidade<TKey>
-        where TKey : IEquatable<TKey>
+    public class Repositorio<TEntidade, TChave> : IRepositorio<TEntidade, TChave>
+        where TEntidade : class, IEntidade<TChave>
+        where TChave : IEquatable<TChave>
     {
-        public IRepositorioLeitura<TEntidade, TKey> Leitura { get; }
+        public IRepositorioLeitura<TEntidade, TChave> Leitura { get; }
 
         public Repositorio([NotNull] IServiceProvider serviceProvider)
         {
             if (serviceProvider == null)
                 throw new ArgumentNullException(nameof(serviceProvider));
 
-            Leitura = serviceProvider.GetService<IRepositorioLeitura<TEntidade, TKey>>();
+            Leitura = serviceProvider.GetService<IRepositorioLeitura<TEntidade, TChave>>();
         }
     }
 }

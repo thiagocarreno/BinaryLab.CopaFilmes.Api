@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using BinaryLab.CopaFilmes.Repositorio.Abstracoes;
@@ -20,27 +21,29 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http
         where TEntidade : class, IEntidade<TChave>
         where TChave : IEquatable<TChave>
     {
-        public RepositorioHttpLeitura()
+        protected readonly HttpClient _httpClientContext;
+
+        public RepositorioHttpLeitura(HttpClient httpClientContext)
         {
+            _httpClientContext = httpClientContext ?? throw new ArgumentNullException(nameof(httpClientContext));
         }
 
-
-        public TEntidade Obter(TChave key)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<TEntidade> ObterAsync(TChave key, CancellationToken cancellationToken = default)
+        public TEntidade Obter(TChave chave)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<TEntidade> Obter(TChave[] keys)
+        public async Task<TEntidade> ObterAsync(TChave chave, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<TEntidade>> ObterAsync(TChave[] keys, CancellationToken cancellationToken = default)
+        public IEnumerable<TEntidade> Obter(TChave[] chaves)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<TEntidade>> ObterAsync(TChave[] chaves, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }

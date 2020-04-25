@@ -11,14 +11,14 @@ namespace BinaryLab.CopaFilmes.Repositorio.Abstracoes
         where TEntidade : class, IEntidade<int>
     { }
 
-    public interface IRepositorioLeitura<TEntidade, in TKey>
-        where TEntidade : class, IEntidade<TKey>
-        where TKey : IEquatable<TKey>
+    public interface IRepositorioLeitura<TEntidade, in TChave>
+        where TEntidade : class, IEntidade<TChave>
+        where TChave : IEquatable<TChave>
     {
-        TEntidade Obter(TKey key);
-        Task<TEntidade> ObterAsync(TKey key, CancellationToken cancellationToken = default);
-        IEnumerable<TEntidade> Obter(TKey[] keys);
-        Task<IEnumerable<TEntidade>> ObterAsync(TKey[] keys, CancellationToken cancellationToken = default);
+        TEntidade Obter(TChave chave);
+        Task<TEntidade> ObterAsync(TChave chave, CancellationToken cancellationToken = default);
+        IEnumerable<TEntidade> Obter(TChave[] chaves);
+        Task<IEnumerable<TEntidade>> ObterAsync(TChave[] chaves, CancellationToken cancellationToken = default);
         IEnumerable<TEntidade> Obter();
         Task<IEnumerable<TEntidade>> ObterAsync(CancellationToken cancellationToken = default);
         IEnumerable<TEntidade> Find(Expression<Func<TEntidade, bool>> predicate);

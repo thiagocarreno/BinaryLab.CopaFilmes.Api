@@ -6,9 +6,9 @@ namespace BinaryLab.CopaFilmes.Repositorio.Abstracoes.Entidades
     public interface IEntidade : IEntidade<int>
     { }
 
-    public interface IEntidade<out TKey> where TKey : IEquatable<TKey>
+    public interface IEntidade<out TChave> where TChave : IEquatable<TChave>
     {
         [Key]
-        TKey Id { get; }
+        TChave Id { get; }
     }
 }

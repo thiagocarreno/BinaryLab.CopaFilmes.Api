@@ -7,9 +7,9 @@ namespace BinaryLab.CopaFilmes.Repositorio.Entidades
     {
     }
 
-    public class Entidade<TKey> : IEntidade<TKey>
-        where TKey : IEquatable<TKey>
+    public class Entidade<TChave> : IEntidade<TChave>
+        where TChave : IEquatable<TChave>
     {
-        public TKey Id { get; }
+        public TChave Id { get; }
     }
 }

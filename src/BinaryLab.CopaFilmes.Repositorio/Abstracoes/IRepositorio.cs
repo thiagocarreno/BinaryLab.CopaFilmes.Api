@@ -7,10 +7,10 @@ namespace BinaryLab.CopaFilmes.Repositorio.Abstracoes
         where TEntidade : class, IEntidade<int>
     { }
 
-    public interface IRepositorio<TEntidade, in TKey>
-        where TEntidade : class, IEntidade<TKey>
-        where TKey : IEquatable<TKey>
+    public interface IRepositorio<TEntidade, in TChave>
+        where TEntidade : class, IEntidade<TChave>
+        where TChave : IEquatable<TChave>
     {
-        IRepositorioLeitura<TEntidade, TKey> Leitura { get; }
+        IRepositorioLeitura<TEntidade, TChave> Leitura { get; }
     }
 }
