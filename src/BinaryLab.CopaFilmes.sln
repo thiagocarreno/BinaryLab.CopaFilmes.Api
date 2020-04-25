@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCuttin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryLab.CopaFilmes.Mocks", "BinaryLab.CopaFilmes.Mocks\BinaryLab.CopaFilmes.Mocks.csproj", "{3CA45D72-350C-4C27-98B1-6E5A3F03D8E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryLab.CopaFilmes.Repositorio.Tests", "BinaryLab.CopaFilmes.Repositorio.Tests\BinaryLab.CopaFilmes.Repositorio.Tests.csproj", "{8AF0B2A9-6C7B-409B-A626-53F005C5153C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{3CA45D72-350C-4C27-98B1-6E5A3F03D8E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CA45D72-350C-4C27-98B1-6E5A3F03D8E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CA45D72-350C-4C27-98B1-6E5A3F03D8E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AF0B2A9-6C7B-409B-A626-53F005C5153C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AF0B2A9-6C7B-409B-A626-53F005C5153C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AF0B2A9-6C7B-409B-A626-53F005C5153C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AF0B2A9-6C7B-409B-A626-53F005C5153C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +98,7 @@ Global
 		{2A40EEC1-979A-4E17-8B5F-D93E4ABD15CC} = {0B0452DF-C99E-43A2-B904-6B9263D5B420}
 		{1431DB44-D78B-43FD-8225-43A99D15DC88} = {428EF9A4-992F-41FB-9866-D1E1CE11C53C}
 		{3CA45D72-350C-4C27-98B1-6E5A3F03D8E3} = {1431DB44-D78B-43FD-8225-43A99D15DC88}
+		{8AF0B2A9-6C7B-409B-A626-53F005C5153C} = {0B0452DF-C99E-43A2-B904-6B9263D5B420}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F33C4609-A6EE-45C7-ADA4-DD49A8A1F284}

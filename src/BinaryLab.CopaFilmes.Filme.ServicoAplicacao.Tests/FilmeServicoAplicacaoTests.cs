@@ -14,7 +14,7 @@ using Xunit;
 
 namespace BinaryLab.CopaFilmes.Filme.ServicoAplicacao.Tests
 {
-    public class FilmeServicoAplicacaoTest
+    public class FilmeServicoAplicacaoTests
     {
         private Mocks.ServicoAplicacao.DTO.Filmes FilmesServicoAplicacaoMock { get; }
         private Mocks.Dominio.Filmes FilmesDominioMock { get; }
@@ -22,7 +22,7 @@ namespace BinaryLab.CopaFilmes.Filme.ServicoAplicacao.Tests
         
         private IMapper _mapper { get; }
 
-        public FilmeServicoAplicacaoTest()
+        public FilmeServicoAplicacaoTests()
         {
             FilmesServicoAplicacaoMock = new Mocks.ServicoAplicacao.DTO.Filmes();
             FilmesDominioMock = new Filmes();
@@ -66,7 +66,7 @@ namespace BinaryLab.CopaFilmes.Filme.ServicoAplicacao.Tests
                 .Returns(FilmesDominioMock.VencedoresSegundaRodada);
 
             var filmeRepositorioMock = new Mock<IFilmeRepositorio>();
-            filmeRepositorioMock.Setup(frm => frm.Obter(It.IsAny<IEnumerable<string>>()))
+            filmeRepositorioMock.Setup(frm => frm.Obter(It.IsAny<string[]>()))
                 .Returns(FilmesRepositorioMock.OitoPrimeiros);
             
             var filmeServicoAplicacao = new FilmeServicoAplicacao(filmeRepositorioMock.Object, _mapper, dominioMock.Object);
@@ -86,7 +86,7 @@ namespace BinaryLab.CopaFilmes.Filme.ServicoAplicacao.Tests
 
             var filmeRepositorioMock = new Mock<IFilmeRepositorio>();
             filmeRepositorioMock.Setup(frm =>
-                    frm.ObterAsync(It.IsAny<CancellationToken>(), It.IsAny<IEnumerable<string>>()))
+                    frm.ObterAsync(It.IsAny<string[]>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(FilmesRepositorioMock.OitoPrimeiros));
 
             var dominio = new FilmeDominio();

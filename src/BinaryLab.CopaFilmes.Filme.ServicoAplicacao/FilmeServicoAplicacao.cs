@@ -42,7 +42,7 @@ namespace BinaryLab.CopaFilmes.Filme.ServicoAplicacao
             if (idsFilmesDisputa == null)
                 throw new ArgumentNullException(nameof(idsFilmesDisputa));
 
-            var filmes = _filmeRepositorio.Obter(idsFilmesDisputa);
+            var filmes = _filmeRepositorio.Obter(idsFilmesDisputa.ToArray());
             var filmesMapeados = _mapper.Map<IEnumerable<Dominio.Entidades.Filme>>(filmes);
             var vencedores = _filmeDominio.ObterVencedores(filmesMapeados);
             return _mapper.Map<IEnumerable<DTO.Filme>>(vencedores);
@@ -53,7 +53,7 @@ namespace BinaryLab.CopaFilmes.Filme.ServicoAplicacao
             if (idsFilmesDisputa == null)
                 throw new ArgumentNullException(nameof(idsFilmesDisputa));
 
-            var filmes = await _filmeRepositorio.ObterAsync(cancellationToken, idsFilmesDisputa);
+            var filmes = await _filmeRepositorio.ObterAsync(idsFilmesDisputa.ToArray(), cancellationToken);
             var filmesMapeados = _mapper.Map<IEnumerable<Dominio.Entidades.Filme>>(filmes);
             var vencedores = await _filmeDominio.ObterVencedoresAsync(filmesMapeados);
             return _mapper.Map<IEnumerable<DTO.Filme>>(vencedores);

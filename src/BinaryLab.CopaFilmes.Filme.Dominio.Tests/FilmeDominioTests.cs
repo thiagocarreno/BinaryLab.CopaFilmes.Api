@@ -7,11 +7,11 @@ using Xunit;
 
 namespace BinaryLab.CopaFilmes.Filme.Dominio.Tests
 {
-    public class FilmeDominioTest
+    public class FilmeDominioTests
     {
         private Filmes FilmesMock { get; }
 
-        public FilmeDominioTest()
+        public FilmeDominioTests()
         {
             FilmesMock = new Filmes();
         }

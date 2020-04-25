@@ -35,12 +35,12 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http
             throw new NotImplementedException();
         }
 
-        public IEnumerable<TEntidade> Obter(params object[] keys)
+        public IEnumerable<TEntidade> Obter(TChave[] keys)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<TEntidade>> ObterAsync(CancellationToken cancellationToken = default, params object[] keys)
+        public async Task<IEnumerable<TEntidade>> ObterAsync(TChave[] keys, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
