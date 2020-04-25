@@ -75,6 +75,28 @@ namespace BinaryLab.CopaFilmes.Filme.Dominio.Tests
             ultimoIndex.Should().Be(ultimoIndexEsperado);
         }
 
+        [Fact(DisplayName = "Deve Obter os Filmes Vencedores")]
+        public void DeveObterVencedores()
+        {
+            var vencedoresMock = FilmesMock.VencedoresSegundaRodada;
+
+            var filmesDominio = new FilmeDominio();
+            var vencedores = filmesDominio.ObterVencedores(FilmesMock.OitoPrimeirosOrdenados);
+
+            vencedores.Should().BeEquivalentTo(vencedoresMock);
+        }
+
+        [Fact(DisplayName = "Deve Obter Assíncronamente os Filmes Vencedores")]
+        public async Task DeveObterVencedoresAsync()
+        {
+            var vencedoresMock = FilmesMock.VencedoresSegundaRodada;
+
+            var filmesDominio = new FilmeDominio();
+            var vencedores = await filmesDominio.ObterVencedoresAsync(FilmesMock.OitoPrimeirosOrdenados);
+
+            vencedores.Should().BeEquivalentTo(vencedoresMock);
+        }
+
         [Theory(DisplayName = "Deve Cálcular Assíncronamente o Index do Último Filme")]
         [InlineData(0, 7)]
         [InlineData(1, 6)]

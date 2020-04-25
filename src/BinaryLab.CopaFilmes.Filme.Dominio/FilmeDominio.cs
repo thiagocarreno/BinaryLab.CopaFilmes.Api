@@ -41,6 +41,24 @@ namespace BinaryLab.CopaFilmes.Filme.Dominio
             return (quantidadeFilmes - index) - 1;
         }
 
+        public IEnumerable<Entidades.Filme> ObterVencedores(IEnumerable<Entidades.Filme> filmes)
+        {
+            var vencedores = Disputar(filmes);
+            if (vencedores.Count() > 2)
+                vencedores = ObterVencedores(vencedores);
+
+            return vencedores;
+        }
+
+        public async Task<IEnumerable<Entidades.Filme>> ObterVencedoresAsync(IEnumerable<Entidades.Filme> filmes, CancellationToken cancellationToken = default)
+        {
+            var vencedores = await DisputarAsync(filmes);
+            if (vencedores.Count() > 2)
+                vencedores = ObterVencedores(vencedores);
+
+            return vencedores;
+        }
+
         public Entidades.Filme ObterVencedor([NotNull] Entidades.Filme primeiroFilmeDisputa,
             [NotNull] Entidades.Filme segundoFilmeDisputa) =>
             ObterVencedorAsync(primeiroFilmeDisputa, segundoFilmeDisputa).Result;

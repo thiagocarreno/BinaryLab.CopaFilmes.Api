@@ -14,6 +14,9 @@ namespace BinaryLab.CopaFilmes.Filme.Dominio.Abstracoes
         Task<int> CalcularDisputasAsync([NotNull] IEnumerable<Entidades.Filme> filmes, CancellationToken cancellationToken = default);
         int ObterUltimoIndex(int quantidadeFilmes, int index);
         Task<int> ObterUltimoIndexAsync(int quantidadeFilmes, int index, CancellationToken cancellationToken = default);
+        IEnumerable<Dominio.Entidades.Filme> ObterVencedores(IEnumerable<Dominio.Entidades.Filme> filmes);
+        Task<IEnumerable<Dominio.Entidades.Filme>> ObterVencedoresAsync(IEnumerable<Dominio.Entidades.Filme> filmes,
+            CancellationToken cancellationToken = default);
         Entidades.Filme ObterVencedor([NotNull] Entidades.Filme primeiroFilmeDisputa, [NotNull] Entidades.Filme segundoFilmeDisputa);
         Task<Entidades.Filme> ObterVencedorAsync([NotNull] Entidades.Filme primeiroFilmeDisputa,
             [NotNull] Entidades.Filme segundoFilmeDisputa, CancellationToken cancellationToken = default);

@@ -17,8 +17,8 @@ namespace BinaryLab.CopaFilmes.Repositorio.Abstracoes
     {
         TEntidade Obter(TKey key);
         Task<TEntidade> ObterAsync(TKey key, CancellationToken cancellationToken = default);
-        TEntidade Obter(params object[] keys);
-        Task<TEntidade> ObterAsync(CancellationToken cancellationToken = default, params object[] keys);
+        IEnumerable<TEntidade> Obter(params object[] keys);
+        Task<IEnumerable<TEntidade>> ObterAsync(CancellationToken cancellationToken = default, params object[] keys);
         IEnumerable<TEntidade> Obter();
         Task<IEnumerable<TEntidade>> ObterAsync(CancellationToken cancellationToken = default);
         IEnumerable<TEntidade> Find(Expression<Func<TEntidade, bool>> predicate);
