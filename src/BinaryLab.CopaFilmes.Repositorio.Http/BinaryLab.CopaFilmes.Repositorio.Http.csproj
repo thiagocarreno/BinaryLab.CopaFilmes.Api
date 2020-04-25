@@ -9,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BinaryLab.CopaFilmes.Filme.Repositorio\BinaryLab.CopaFilmes.Filme.Repositorio.csproj" />
     <ProjectReference Include="..\BinaryLab.CopaFilmes.Repositorio\BinaryLab.CopaFilmes.Repositorio.csproj" />
   </ItemGroup>
 

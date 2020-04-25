@@ -1,6 +1,7 @@
 ﻿using System;
 using BinaryLab.CopaFilmes.Repositorio.Abstracoes;
 using BinaryLab.CopaFilmes.Repositorio.Abstracoes.Entidades;
+using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BinaryLab.CopaFilmes.Repositorio
@@ -8,7 +9,7 @@ namespace BinaryLab.CopaFilmes.Repositorio
     public class Repositorio<TEntidade> : Repositorio<TEntidade, int>, IRepositorio<TEntidade>
         where TEntidade : class, IEntidade<int>
     {
-        public Repositorio(IServiceProvider serviceProvider) : base(serviceProvider)
+        public Repositorio([NotNull] IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
     }
@@ -17,14 +18,14 @@ namespace BinaryLab.CopaFilmes.Repositorio
         where TEntidade : class, IEntidade<TKey>
         where TKey : IEquatable<TKey>
     {
-        public IRepositorioLeitura<TEntidade, TKey> Leitor { get; }
+        public IRepositorioLeitura<TEntidade, TKey> Leitura { get; }
 
-        public Repositorio(IServiceProvider serviceProvider)
+        public Repositorio([NotNull] IServiceProvider serviceProvider)
         {
             if (serviceProvider == null)
                 throw new ArgumentNullException(nameof(serviceProvider));
 
-            Leitor = serviceProvider.GetService<IRepositorioLeitura<TEntidade, TKey>>();
+            Leitura = serviceProvider.GetService<IRepositorioLeitura<TEntidade, TKey>>();
         }
     }
 }

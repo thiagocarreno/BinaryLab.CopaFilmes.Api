@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BinaryLab.CopaFilmes.Repositorio.Http\BinaryLab.CopaFilmes.Repositorio.Http.csproj" />
+    <ProjectReference Include="..\BinaryLab.CopaFilmes.Repositorio\BinaryLab.CopaFilmes.Repositorio.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -9,6 +9,6 @@ namespace BinaryLab.CopaFilmes.Repositorio.Abstracoes.Entidades
     public interface IEntidade<out TKey> where TKey : IEquatable<TKey>
     {
         [Key]
-        TKey Key { get; }
+        TKey Id { get; }
     }
 }

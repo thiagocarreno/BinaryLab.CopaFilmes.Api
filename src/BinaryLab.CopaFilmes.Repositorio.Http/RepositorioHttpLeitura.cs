@@ -8,11 +8,10 @@ using BinaryLab.CopaFilmes.Repositorio.Abstracoes.Entidades;
 
 namespace BinaryLab.CopaFilmes.Repositorio.Http
 {
-    //TODO: Implementar
     public class RepositorioHttpLeitura<TEntidade> : RepositorioHttpLeitura<TEntidade, int>, IRepositorioLeitura<TEntidade>
         where TEntidade : class, IEntidade<int>
     {
-        public RepositorioHttpLeitura()
+        public RepositorioHttpLeitura() : base()
         {
         }
     }
@@ -21,18 +20,42 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http
         where TEntidade : class, IEntidade<TChave>
         where TChave : IEquatable<TChave>
     {
+        public RepositorioHttpLeitura()
+        {
+        }
 
-        public async Task<TEntidade> GetAsync(TChave key, CancellationToken cancellationToken = default)
+
+        public TEntidade Obter(TChave key)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<TEntidade> GetAsync(CancellationToken cancellationToken = default, params object[] keys)
+        public async Task<TEntidade> ObterAsync(TChave key, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<TEntidade>> GetAsync(CancellationToken cancellationToken = default)
+        public TEntidade Obter(params object[] keys)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<TEntidade> ObterAsync(CancellationToken cancellationToken = default, params object[] keys)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<TEntidade> Obter()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<TEntidade>> ObterAsync(CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<TEntidade> Find(Expression<Func<TEntidade, bool>> predicate)
         {
             throw new NotImplementedException();
         }

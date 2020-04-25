@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BinaryLab.CopaFilmes.Filme.Dominio\BinaryLab.CopaFilmes.Filme.Dominio.csproj" />
+    <ProjectReference Include="..\BinaryLab.CopaFilmes.Filme.Repositorio\BinaryLab.CopaFilmes.Filme.Repositorio.csproj" />
+    <ProjectReference Include="..\BinaryLab.CopaFilmes.Filme.ServicoAplicacao\BinaryLab.CopaFilmes.Filme.ServicoAplicacao.csproj" />
     <ProjectReference Include="..\BinaryLab.CopaFilmes.Repositorio\BinaryLab.CopaFilmes.Repositorio.csproj" />
   </ItemGroup>
 

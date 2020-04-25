@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace BinaryLab.CopaFilmes.Filme.Dominio.Entidade
+namespace BinaryLab.CopaFilmes.Filme.Dominio.Entidades
 {
     public class Filme
     {
         public string Id { get; }
         public string Nome { get; }
         public int Ano { get; }
-        public decimal Nota { get; set; }
+        public decimal Nota { get; }
 
         public Filme(string id, string nome, int ano, decimal nota)
         {
