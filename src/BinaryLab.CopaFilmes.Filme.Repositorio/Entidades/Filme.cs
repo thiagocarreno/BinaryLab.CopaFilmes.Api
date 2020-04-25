@@ -6,12 +6,17 @@ namespace BinaryLab.CopaFilmes.Filme.Repositorio.Entidades
 {
     public class Filme : Entidade<string>
     {
+        public new string Id { get; set; }
         public string Nome { get; set; }
         public int Ano { get; set;  }
         public decimal Nota { get; set; }
 
         public Filme([NotNull] string id, string nome, int ano, decimal nota)
         {
+            Id = id;
+            Nome = nome;
+            Ano = ano;
+            Nota = nota;
         }
 
         public static Filme Create(string id, string nome, int ano, decimal nota) =>

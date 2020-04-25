@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace BinaryLab.CopaFilmes.Mocks.ServicoAplicacao.DTO
 {
@@ -8,7 +9,13 @@ namespace BinaryLab.CopaFilmes.Mocks.ServicoAplicacao.DTO
 
         public Filmes()
         {
-            Lista = new List<Filme.ServicoAplicacao.DTO.Filme>(16);
+            var filmesDominio = new Mocks.Dominio.Filmes();
+            Lista = filmesDominio.Lista.Select(f => new Filme.ServicoAplicacao.DTO.Filme()
+            {
+                Id = f.Id,
+                Nome = f.Nome,
+                Ano = f.Ano
+            });
         }
     }
 }

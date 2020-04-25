@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using BinaryLab.CopaFilmes.Mocks;
+using BinaryLab.CopaFilmes.Mocks.Dominio;
 using FluentAssertions;
 using Xunit;
 
