@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using BinaryLab.CopaFilmes.Repositorio.Abstracoes;
 using BinaryLab.CopaFilmes.Repositorio.Abstracoes.Entidades;
+using BinaryLab.CopaFilmes.Repositorio.Http.Abstracoes;
+using JetBrains.Annotations;
+using Newtonsoft.Json;
 
 namespace BinaryLab.CopaFilmes.Repositorio.Http
 {
@@ -13,8 +18,7 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http
         where TEntidade : class, IEntidade<int>
     {
 
-        public RepositorioHttpLeitura(IHttpClientFactory httpClientFactory, Uri uriRecurso) : base(httpClientFactory,
-            uriRecurso)
+        public RepositorioHttpLeitura([NotNull] IHttpContexto httpContexto) : base(httpContexto)
         {
         }
     }
@@ -23,53 +27,53 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http
         where TEntidade : class, IEntidade<TChave>
         where TChave : IEquatable<TChave>
     {
-        protected readonly IHttpClientFactory _httpClientFactory;
-        protected readonly Uri _uriRecurso;
+        protected readonly IHttpContexto _httpContexto;
 
-        public RepositorioHttpLeitura(IHttpClientFactory httpClientFactory, Uri uriRecurso)
+        public RepositorioHttpLeitura([NotNull] IHttpContexto httpContexto)
         {
-            _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
-            _uriRecurso = uriRecurso ?? throw new ArgumentNullException(nameof(uriRecurso));
+            _httpContexto = httpContexto ?? throw new ArgumentNullException(nameof(httpContexto));
         }
 
-        public IEnumerable<TEntidade> Obter()
+        public virtual IEnumerable<TEntidade> Obter() => ObterAsync().Result;
+
+        public virtual async Task<IEnumerable<TEntidade>> ObterAsync(CancellationToken cancellationToken = default)
         {
-            _httpClientFactory.CreateClient()
+            var resposta = await _httpContexto.ObterAsync(_httpContexto.UrlRecurso, cancellationToken);
+            return await ConverterRetornoAsync<IEnumerable<TEntidade>>(resposta);
         }
 
-        public async Task<IEnumerable<TEntidade>> ObterAsync(CancellationToken cancellationToken = default)
+        public virtual TEntidade Obter(TChave chave) => ObterAsync(chave).Result;
+
+        public virtual async Task<TEntidade> ObterAsync(TChave chave, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var url = $"{_httpContexto.UrlRecurso}/{chave}";
+            var resposta = await _httpContexto.ObterAsync(url, cancellationToken);
+            return await ConverterRetornoAsync<TEntidade>(resposta);
         }
 
-        public TEntidade Obter(TChave chave)
+        public virtual IEnumerable<TEntidade> Obter(TChave[] chaves) => ObterAsync(chaves).Result;
+
+        public virtual async Task<IEnumerable<TEntidade>> ObterAsync(TChave[] chaves, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var conteudo = await ObterAsync(cancellationToken);
+            return conteudo.Where(i => chaves.Any(j => j.Equals(i.Id)));
         }
 
-        public async Task<TEntidade> ObterAsync(TChave chave, CancellationToken cancellationToken = default)
+        public virtual IEnumerable<TEntidade> Find(Expression<Func<TEntidade, bool>> predicate) => FindAsync(predicate).Result;
+
+        public virtual async Task<IEnumerable<TEntidade>> FindAsync(Expression<Func<TEntidade, bool>> predicate, CancellationToken cancellationToken = default)
         {
-            throw new NotSupportedException();
+            var conteudo = await ObterAsync(cancellationToken);
+            return conteudo.Where(predicate.Compile());
         }
 
-        public IEnumerable<TEntidade> Obter(TChave[] chaves)
+        private async Task<TRetorno> ConverterRetornoAsync<TRetorno>(HttpResponseMessage resposta)
         {
-            throw new NotSupportedException();
-        }
+            if (!resposta.IsSuccessStatusCode)
+                return default;
 
-        public async Task<IEnumerable<TEntidade>> ObterAsync(TChave[] chaves, CancellationToken cancellationToken = default)
-        {
-            throw new NotSupportedException();
-        }
-
-        public IEnumerable<TEntidade> Find(Expression<Func<TEntidade, bool>> predicate)
-        {
-            throw new NotSupportedException();
-        }
-
-        public async Task<IEnumerable<TEntidade>> FindAsync(Expression<Func<TEntidade, bool>> predicate, CancellationToken cancellationToken = default)
-        {
-            throw new NotSupportedException();
+            var conteudoResposta= await resposta.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<TRetorno>(conteudoResposta);
         }
     }
 }

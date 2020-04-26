@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using BinaryLab.CopaFilmes.Repositorio.Abstracoes;
+using BinaryLab.CopaFilmes.Repositorio.Http.Abstracoes;
 using BinaryLab.CopaFilmes.Tests.Mocks.Repositorio.Entidades;
 using FluentAssertions;
 using Microsoft.Extensions.Http;
@@ -14,71 +15,104 @@ namespace BinaryLab.CopaFilmes.Filme.Repositorio.UnitTests
 {
     public class FilmeRepositorioUnitTests
     {
-        public Filmes FilmesRepositorioMock { get; set; }
-        public Tests.Mocks.ServicoAplicacao.DTO.Filmes FilmesSevicoAplicacaoMock { get; set; }
+        public Filmes _filmesRepositorioMock { get; set; }
+        public Tests.Mocks.ServicoAplicacao.DTO.Filmes _filmesSevicoAplicacaoMock { get; set; }
 
         public FilmeRepositorioUnitTests()
         {
-            FilmesRepositorioMock = new Filmes();
-            FilmesSevicoAplicacaoMock = new Tests.Mocks.ServicoAplicacao.DTO.Filmes();
+            _filmesRepositorioMock = new Filmes();
+            _filmesSevicoAplicacaoMock = new Tests.Mocks.ServicoAplicacao.DTO.Filmes();
         }
 
         [Fact(DisplayName = "Deve Obter Filmes")]
         public void DeveObterFilmes()
         {
-            var httpClientFactoryMock = new Mock<IHttpClientFactory>();
-            var uriRecursoMock = new Uri(Tests.Mocks.AppSettings.UriRecurso);
+            var httpContextoMock = new Mock<IHttpContexto>();
             var repositorioLeituraMock = new Mock<IRepositorioLeitura<Filme.Repositorio.Entidades.Filme, string>>();
-            repositorioLeituraMock.Setup(r => r.Obter()).Returns(FilmesRepositorioMock.Lista);
+            repositorioLeituraMock.Setup(r => r.Obter()).Returns(_filmesRepositorioMock.Lista);
 
-            var filmeRepositorio = new FilmeRepositorio(repositorioLeituraMock.Object, httpClientFactoryMock.Object, uriRecursoMock);
+            var filmeRepositorio = new FilmeRepositorio(repositorioLeituraMock.Object, httpContextoMock.Object);
             var filmes = filmeRepositorio.Obter();
 
-            filmes.Should().BeEquivalentTo(FilmesRepositorioMock.Lista);
+            filmes.Should().NotBeNull().And.BeEquivalentTo(_filmesRepositorioMock.Lista);
         }
 
         [Fact(DisplayName = "Deve Obter Filmes Assíncronamente")]
         public async Task DeveObterFilmesAsync()
         {
-            var httpClientFactoryMock = new Mock<IHttpClientFactory>();
-            var uriRecursoMock = new Uri(Tests.Mocks.AppSettings.UriRecurso);
+            var httpContextoMock = new Mock<IHttpContexto>();
             var repositorioLeituraMock = new Mock<IRepositorioLeitura<Filme.Repositorio.Entidades.Filme, string>>();
             repositorioLeituraMock.Setup(r => r.ObterAsync(It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(FilmesRepositorioMock.Lista));
+                .Returns(Task.FromResult(_filmesRepositorioMock.Lista));
 
-            var filmeRepositorio = new FilmeRepositorio(repositorioLeituraMock.Object, httpClientFactoryMock.Object, uriRecursoMock);
+            var filmeRepositorio = new FilmeRepositorio(repositorioLeituraMock.Object, httpContextoMock.Object);
             var filmes = await filmeRepositorio.ObterAsync();
 
-            filmes.Should().BeEquivalentTo(FilmesRepositorioMock.Lista);
+            filmes.Should().NotBeNull().And.BeEquivalentTo(_filmesRepositorioMock.Lista);
         }
 
         [Fact(DisplayName = "Deve Obter Filmes por Ids")]
         public void DeveObterFilmesPorIds()
         {
-            var httpClientFactoryMock = new Mock<IHttpClientFactory>();
-            var uriRecursoMock = new Uri(Tests.Mocks.AppSettings.UriRecurso);
+            var httpContextoMock = new Mock<IHttpContexto>();
             var repositorioLeituraMock = new Mock<IRepositorioLeitura<Filme.Repositorio.Entidades.Filme, string>>();
-            repositorioLeituraMock.Setup(r => r.Obter(It.IsAny<string[]>())).Returns(FilmesRepositorioMock.OitoPrimeiros);
+            repositorioLeituraMock.Setup(r => r.Obter(It.IsAny<string[]>())).Returns(_filmesRepositorioMock.OitoPrimeiros);
 
-            var filmeRepositorio = new FilmeRepositorio(repositorioLeituraMock.Object, httpClientFactoryMock.Object, uriRecursoMock);
-            var filmes = filmeRepositorio.Obter(FilmesSevicoAplicacaoMock.OitoPrimeirosIds.ToArray());
+            var filmeRepositorio = new FilmeRepositorio(repositorioLeituraMock.Object, httpContextoMock.Object);
+            var filmes = filmeRepositorio.Obter(_filmesSevicoAplicacaoMock.OitoPrimeirosIds.ToArray());
 
-            filmes.Should().BeEquivalentTo(FilmesRepositorioMock.OitoPrimeiros);
+            filmes.Should().NotBeNull().And.BeEquivalentTo(_filmesRepositorioMock.OitoPrimeiros);
         }
 
         [Fact(DisplayName = "Deve Obter Filmes por Ids Assíncronamente")]
         public async Task DeveObterFilmesPorIdsAsync()
         {
-            var httpClientFactoryMock = new Mock<IHttpClientFactory>();
-            var uriRecursoMock = new Uri(Tests.Mocks.AppSettings.UriRecurso);
+            var httpContextoMock = new Mock<IHttpContexto>();
             var repositorioLeituraMock = new Mock<IRepositorioLeitura<Filme.Repositorio.Entidades.Filme, string>>();
             repositorioLeituraMock.Setup(r => r.ObterAsync(It.IsAny<string[]>(), It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(FilmesRepositorioMock.OitoPrimeiros));
+                .Returns(Task.FromResult(_filmesRepositorioMock.OitoPrimeiros));
 
-            var filmeRepositorio = new FilmeRepositorio(repositorioLeituraMock.Object, httpClientFactoryMock.Object, uriRecursoMock);
-            var filmes = await filmeRepositorio.ObterAsync(FilmesSevicoAplicacaoMock.OitoPrimeirosIds.ToArray(), CancellationToken.None);
+            var filmeRepositorio = new FilmeRepositorio(repositorioLeituraMock.Object, httpContextoMock.Object);
+            var filmes = await filmeRepositorio.ObterAsync(_filmesSevicoAplicacaoMock.OitoPrimeirosIds.ToArray(), CancellationToken.None);
 
-            filmes.Should().BeEquivalentTo(FilmesRepositorioMock.OitoPrimeiros);
+            filmes.Should().NotBeNull().And.BeEquivalentTo(_filmesRepositorioMock.OitoPrimeiros);
+        }
+
+        [Theory(DisplayName = "Deve Obter Filmes por Chave")]
+        [InlineData("tt3606756")]
+        [InlineData("tt3501632")]
+        [InlineData("tt1825683")]
+        public void DeveObterFilmesPorChave(string chave)
+        {
+            var filmeMock = _filmesRepositorioMock.Lista.FirstOrDefault(i => i.Id.Equals(chave));
+
+            var httpContextoMock = new Mock<IHttpContexto>();
+            var repositorioLeituraMock = new Mock<IRepositorioLeitura<Filme.Repositorio.Entidades.Filme, string>>();
+            repositorioLeituraMock.Setup(r => r.Obter()).Returns(_filmesRepositorioMock.Lista);
+
+            var filmeRepositorio = new FilmeRepositorio(repositorioLeituraMock.Object, httpContextoMock.Object);
+            var filme = filmeRepositorio.Obter(chave);
+
+            filme.Should().NotBeNull().And.BeEquivalentTo(filmeMock);
+        }
+
+        [Theory(DisplayName = "Deve Obter Assíncronamente Filmes por Chave")]
+        [InlineData("tt3606756")]
+        [InlineData("tt3501632")]
+        [InlineData("tt1825683")]
+        public async Task DeveObterFilmesPorChaveAsync(string chave)
+        {
+            var filmeMock = _filmesRepositorioMock.Lista.FirstOrDefault(i => i.Id.Equals(chave));
+
+            var httpContextoMock = new Mock<IHttpContexto>();
+            var repositorioLeituraMock = new Mock<IRepositorioLeitura<Filme.Repositorio.Entidades.Filme, string>>();
+            repositorioLeituraMock.Setup(r => r.ObterAsync(It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(_filmesRepositorioMock.Lista));
+
+            var filmeRepositorio = new FilmeRepositorio(repositorioLeituraMock.Object, httpContextoMock.Object);
+            var filme = await filmeRepositorio.ObterAsync(chave);
+
+            filme.Should().NotBeNull().And.BeEquivalentTo(filmeMock);
         }
     }
 }

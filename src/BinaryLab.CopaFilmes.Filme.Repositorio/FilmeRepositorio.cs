@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BinaryLab.CopaFilmes.Filme.Repositorio.Abstracoes;
 using BinaryLab.CopaFilmes.Repositorio.Abstracoes;
 using BinaryLab.CopaFilmes.Repositorio.Http;
+using BinaryLab.CopaFilmes.Repositorio.Http.Abstracoes;
 using JetBrains.Annotations;
 
 namespace BinaryLab.CopaFilmes.Filme.Repositorio
@@ -16,15 +17,12 @@ namespace BinaryLab.CopaFilmes.Filme.Repositorio
         protected readonly IRepositorioLeitura<Entidades.Filme, string> _repositorioLeitura;
 
         public FilmeRepositorio(IRepositorioLeitura<Entidades.Filme, string> repositorioLeitura,
-            [NotNull] IHttpClientFactory httpClientFactory, [NotNull] Uri uriRecurso) : base(httpClientFactory, uriRecurso)
+            [NotNull] IHttpContexto httpContexto) : base(httpContexto)
         {
             _repositorioLeitura = repositorioLeitura ?? throw new ArgumentNullException(nameof(repositorioLeitura));
             
-            if (httpClientFactory == null)
-                throw new ArgumentNullException(nameof(httpClientFactory));
-            
-            if (uriRecurso == null)
-                throw new ArgumentNullException(nameof(uriRecurso));
+            if (httpContexto == null)
+                throw new ArgumentNullException(nameof(httpContexto));
         }
 
         public IEnumerable<Entidades.Filme> Obter() => _repositorioLeitura.Obter();
@@ -36,5 +34,17 @@ namespace BinaryLab.CopaFilmes.Filme.Repositorio
         public Task<IEnumerable<Entidades.Filme>> ObterAsync(IEnumerable<string> idsFilmes,
             CancellationToken cancellationToken = default) =>
             _repositorioLeitura.ObterAsync(idsFilmes.ToArray(), cancellationToken);
+
+        public override Entidades.Filme Obter(string chave)
+        {
+            var conteudo = _repositorioLeitura.Obter();
+            return conteudo.FirstOrDefault(i => i.Id.Equals(chave));
+        }
+
+        public override async Task<Entidades.Filme> ObterAsync(string chave, CancellationToken cancellationToken = default)
+        {
+            var conteudo = await _repositorioLeitura.ObterAsync(cancellationToken);
+            return conteudo.FirstOrDefault(i => i.Id.Equals(chave));
+        }
     }
 }

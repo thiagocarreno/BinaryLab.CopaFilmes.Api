@@ -6,7 +6,6 @@ namespace BinaryLab.CopaFilmes.Filme.Repositorio.Entidades
 {
     public class Filme : Entidade<string>
     {
-        public new string Id { get; set; }
         public string Nome { get; set; }
         public int Ano { get; set;  }
         public decimal Nota { get; set; }

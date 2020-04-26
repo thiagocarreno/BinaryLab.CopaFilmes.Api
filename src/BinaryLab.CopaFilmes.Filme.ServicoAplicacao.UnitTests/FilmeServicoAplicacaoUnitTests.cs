@@ -15,17 +15,17 @@ namespace BinaryLab.CopaFilmes.Filme.ServicoAplicacao.UnitTests
 {
     public class FilmeServicoAplicacaoUnitTests
     {
-        private Filmes FilmesServicoAplicacaoMock { get; }
-        private Tests.Mocks.Dominio.Filmes FilmesDominioMock { get; }
-        private Tests.Mocks.Repositorio.Entidades.Filmes FilmesRepositorioMock { get; }
+        private Filmes _filmesServicoAplicacaoMock { get; }
+        private Tests.Mocks.Dominio.Filmes _filmesDominioMock { get; }
+        private Tests.Mocks.Repositorio.Entidades.Filmes _filmesRepositorioMock { get; }
         
         private IMapper _mapper { get; }
 
         public FilmeServicoAplicacaoUnitTests()
         {
-            FilmesServicoAplicacaoMock = new Filmes();
-            FilmesDominioMock = new Tests.Mocks.Dominio.Filmes();
-            FilmesRepositorioMock = new Tests.Mocks.Repositorio.Entidades.Filmes();
+            _filmesServicoAplicacaoMock = new Filmes();
+            _filmesDominioMock = new Tests.Mocks.Dominio.Filmes();
+            _filmesRepositorioMock = new Tests.Mocks.Repositorio.Entidades.Filmes();
 
             _mapper = new MapperConfiguration(cfg =>
             {
@@ -37,24 +37,24 @@ namespace BinaryLab.CopaFilmes.Filme.ServicoAplicacao.UnitTests
         public void DeveObterFilmes()
         {
             var filmeRepositorioMock = new Mock<IFilmeRepositorio>();
-            filmeRepositorioMock.Setup(frp => frp.Obter()).Returns(FilmesRepositorioMock.Lista);
+            filmeRepositorioMock.Setup(frp => frp.Obter()).Returns(_filmesRepositorioMock.Lista);
             
             var filmeServicoAplicacao = new FilmeServicoAplicacao(filmeRepositorioMock.Object, _mapper);
             var filmes = filmeServicoAplicacao.Obter();
 
-            filmes.Should().BeEquivalentTo(FilmesServicoAplicacaoMock.Lista);
+            filmes.Should().NotBeNull().And.BeEquivalentTo(_filmesServicoAplicacaoMock.Lista);
         }
 
         [Fact(DisplayName = "Deve Obter Assíncronamente os Filmes")]
         public async Task DeveObterFilmesAsync()
         {
             var filmeRepositorioMock = new Mock<IFilmeRepositorio>();
-            filmeRepositorioMock.Setup(frp => frp.ObterAsync()).Returns(Task.FromResult(FilmesRepositorioMock.Lista));
+            filmeRepositorioMock.Setup(frp => frp.ObterAsync()).Returns(Task.FromResult(_filmesRepositorioMock.Lista));
             
             var filmeServicoAplicacao = new FilmeServicoAplicacao(filmeRepositorioMock.Object, _mapper);
             var filmes = await filmeServicoAplicacao.ObterAsync();
 
-            filmes.Should().BeEquivalentTo(FilmesServicoAplicacaoMock.Lista);
+            filmes.Should().NotBeNull().And.BeEquivalentTo(_filmesServicoAplicacaoMock.Lista);
         }
 
         [Fact(DisplayName = "Deve Obter os Filmes Vencedores")]
@@ -62,16 +62,16 @@ namespace BinaryLab.CopaFilmes.Filme.ServicoAplicacao.UnitTests
         {
             var dominioMock = new Mock<IFilmeDominio>();
             dominioMock.Setup(dm => dm.ObterVencedores(It.IsAny<IEnumerable<Dominio.Entidades.Filme>>()))
-                .Returns(FilmesDominioMock.VencedoresSegundaRodada);
+                .Returns(_filmesDominioMock.VencedoresSegundaRodada);
 
             var filmeRepositorioMock = new Mock<IFilmeRepositorio>();
             filmeRepositorioMock.Setup(frm => frm.Obter(It.IsAny<string[]>()))
-                .Returns(FilmesRepositorioMock.OitoPrimeiros);
+                .Returns(_filmesRepositorioMock.OitoPrimeiros);
             
             var filmeServicoAplicacao = new FilmeServicoAplicacao(filmeRepositorioMock.Object, _mapper, dominioMock.Object);
-            var filmes = filmeServicoAplicacao.ObterVencedores(FilmesServicoAplicacaoMock.OitoPrimeirosIds);
+            var filmes = filmeServicoAplicacao.ObterVencedores(_filmesServicoAplicacaoMock.OitoPrimeirosIds);
 
-            filmes.Should().BeEquivalentTo(FilmesServicoAplicacaoMock.Vencedores);
+            filmes.Should().NotBeNull().And.BeEquivalentTo(_filmesServicoAplicacaoMock.Vencedores);
         }
 
         [Fact(DisplayName = "Deve Obter Assíncronamente os Filmes Vencedores")]
@@ -81,18 +81,18 @@ namespace BinaryLab.CopaFilmes.Filme.ServicoAplicacao.UnitTests
             dominioMock.Setup(dm =>
                     dm.ObterVencedoresAsync(It.IsAny<IEnumerable<Dominio.Entidades.Filme>>(),
                         It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(FilmesDominioMock.VencedoresSegundaRodada));
+                .Returns(Task.FromResult(_filmesDominioMock.VencedoresSegundaRodada));
 
             var filmeRepositorioMock = new Mock<IFilmeRepositorio>();
             filmeRepositorioMock.Setup(frm =>
                     frm.ObterAsync(It.IsAny<string[]>(), It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(FilmesRepositorioMock.OitoPrimeiros));
+                .Returns(Task.FromResult(_filmesRepositorioMock.OitoPrimeiros));
 
             var dominio = new FilmeDominio();
             var filmeServicoAplicacao = new FilmeServicoAplicacao(filmeRepositorioMock.Object, _mapper, dominio);
-            var filmes = await filmeServicoAplicacao.ObterVencedoresAsync(FilmesServicoAplicacaoMock.OitoPrimeirosIds);
+            var filmes = await filmeServicoAplicacao.ObterVencedoresAsync(_filmesServicoAplicacaoMock.OitoPrimeirosIds);
 
-            filmes.Should().BeEquivalentTo(FilmesServicoAplicacaoMock.Vencedores);
+            filmes.Should().NotBeNull().And.BeEquivalentTo(_filmesServicoAplicacaoMock.Vencedores);
         }
     }
 }

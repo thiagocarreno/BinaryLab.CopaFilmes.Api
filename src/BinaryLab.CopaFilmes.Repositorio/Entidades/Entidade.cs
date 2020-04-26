@@ -10,6 +10,6 @@ namespace BinaryLab.CopaFilmes.Repositorio.Entidades
     public class Entidade<TChave> : IEntidade<TChave>
         where TChave : IEquatable<TChave>
     {
-        public TChave Id { get; }
+        public TChave Id { get; protected set; }
     }
 }
