@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -7,26 +6,26 @@ using BinaryLab.CopaFilmes.Filme.Dominio;
 using BinaryLab.CopaFilmes.Filme.Dominio.Abstracoes;
 using BinaryLab.CopaFilmes.Filme.Repositorio.Abstracoes;
 using BinaryLab.CopaFilmes.Filme.ServicoAplicacao.Mapeamentos;
-using BinaryLab.CopaFilmes.Mocks.Dominio;
+using BinaryLab.CopaFilmes.Tests.Mocks.ServicoAplicacao.DTO;
 using FluentAssertions;
 using Moq;
 using Xunit;
 
-namespace BinaryLab.CopaFilmes.Filme.ServicoAplicacao.Tests
+namespace BinaryLab.CopaFilmes.Filme.ServicoAplicacao.UnitTests
 {
-    public class FilmeServicoAplicacaoTests
+    public class FilmeServicoAplicacaoUnitTests
     {
-        private Mocks.ServicoAplicacao.DTO.Filmes FilmesServicoAplicacaoMock { get; }
-        private Mocks.Dominio.Filmes FilmesDominioMock { get; }
-        private Mocks.Repositorio.Entidades.Filmes FilmesRepositorioMock { get; }
+        private Filmes FilmesServicoAplicacaoMock { get; }
+        private Tests.Mocks.Dominio.Filmes FilmesDominioMock { get; }
+        private Tests.Mocks.Repositorio.Entidades.Filmes FilmesRepositorioMock { get; }
         
         private IMapper _mapper { get; }
 
-        public FilmeServicoAplicacaoTests()
+        public FilmeServicoAplicacaoUnitTests()
         {
-            FilmesServicoAplicacaoMock = new Mocks.ServicoAplicacao.DTO.Filmes();
-            FilmesDominioMock = new Filmes();
-            FilmesRepositorioMock = new Mocks.Repositorio.Entidades.Filmes();
+            FilmesServicoAplicacaoMock = new Filmes();
+            FilmesDominioMock = new Tests.Mocks.Dominio.Filmes();
+            FilmesRepositorioMock = new Tests.Mocks.Repositorio.Entidades.Filmes();
 
             _mapper = new MapperConfiguration(cfg =>
             {

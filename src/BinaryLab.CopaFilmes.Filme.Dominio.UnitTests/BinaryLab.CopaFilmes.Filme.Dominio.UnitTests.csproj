@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BinaryLab.CopaFilmes.Mocks\BinaryLab.CopaFilmes.Mocks.csproj" />
     <ProjectReference Include="..\BinaryLab.CopaFilmes.Filme.Dominio\BinaryLab.CopaFilmes.Filme.Dominio.csproj" />
+    <ProjectReference Include="..\BinaryLab.CopaFilmes.Tests.Mocks\BinaryLab.CopaFilmes.Tests.Mocks.csproj" />
   </ItemGroup>
 
 </Project>

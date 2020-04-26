@@ -1,17 +1,16 @@
 using System.Linq;
 using System.Threading.Tasks;
-using BinaryLab.CopaFilmes.Mocks;
-using BinaryLab.CopaFilmes.Mocks.Dominio;
+using BinaryLab.CopaFilmes.Tests.Mocks.Dominio;
 using FluentAssertions;
 using Xunit;
 
-namespace BinaryLab.CopaFilmes.Filme.Dominio.Tests
+namespace BinaryLab.CopaFilmes.Filme.Dominio.UnitTests
 {
-    public class FilmeDominioTests
+    public class FilmeDominioUnitTests
     {
         private Filmes FilmesMock { get; }
 
-        public FilmeDominioTests()
+        public FilmeDominioUnitTests()
         {
             FilmesMock = new Filmes();
         }

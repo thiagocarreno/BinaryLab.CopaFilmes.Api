@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace BinaryLab.CopaFilmes.Mocks.Dominio
+namespace BinaryLab.CopaFilmes.Tests.Mocks.Dominio
 {
     public class Filmes
     {

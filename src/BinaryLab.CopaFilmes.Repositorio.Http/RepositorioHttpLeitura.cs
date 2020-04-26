@@ -12,7 +12,8 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http
     public class RepositorioHttpLeitura<TEntidade> : RepositorioHttpLeitura<TEntidade, int>, IRepositorioLeitura<TEntidade>
         where TEntidade : class, IEntidade<int>
     {
-        public RepositorioHttpLeitura() : base()
+
+        public RepositorioHttpLeitura()
         {
         }
     }
@@ -21,11 +22,10 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http
         where TEntidade : class, IEntidade<TChave>
         where TChave : IEquatable<TChave>
     {
-        protected readonly HttpClient _httpClientContext;
+        protected readonly IHttpClientFactory _httpClientFactory;
 
-        public RepositorioHttpLeitura(HttpClient httpClientContext)
+        public RepositorioHttpLeitura()
         {
-            _httpClientContext = httpClientContext ?? throw new ArgumentNullException(nameof(httpClientContext));
         }
 
         public TEntidade Obter(TChave chave)
@@ -35,17 +35,17 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http
 
         public async Task<TEntidade> ObterAsync(TChave chave, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public IEnumerable<TEntidade> Obter(TChave[] chaves)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public async Task<IEnumerable<TEntidade>> ObterAsync(TChave[] chaves, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public IEnumerable<TEntidade> Obter()
@@ -60,12 +60,12 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http
 
         public IEnumerable<TEntidade> Find(Expression<Func<TEntidade, bool>> predicate)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public async Task<IEnumerable<TEntidade>> FindAsync(Expression<Func<TEntidade, bool>> predicate, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
     }
 }

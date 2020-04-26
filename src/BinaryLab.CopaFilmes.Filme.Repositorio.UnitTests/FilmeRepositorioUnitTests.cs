@@ -1,25 +1,23 @@
-using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using BinaryLab.CopaFilmes.Filme.Repositorio;
-using BinaryLab.CopaFilmes.Mocks.Repositorio.Entidades;
 using BinaryLab.CopaFilmes.Repositorio.Abstracoes;
+using BinaryLab.CopaFilmes.Tests.Mocks.Repositorio.Entidades;
 using FluentAssertions;
 using Moq;
 using Xunit;
 
-namespace BinaryLab.CopaFilmes.Repositorio.Tests
+namespace BinaryLab.CopaFilmes.Filme.Repositorio.UnitTests
 {
-    public class FilmeRepositorioTests
+    public class FilmeRepositorioUnitTests
     {
         public Filmes FilmesRepositorioMock { get; set; }
-        public Mocks.ServicoAplicacao.DTO.Filmes FilmesSevicoAplicacaoMock { get; set; }
+        public Tests.Mocks.ServicoAplicacao.DTO.Filmes FilmesSevicoAplicacaoMock { get; set; }
 
-        public FilmeRepositorioTests()
+        public FilmeRepositorioUnitTests()
         {
             FilmesRepositorioMock = new Filmes();
-            FilmesSevicoAplicacaoMock = new Mocks.ServicoAplicacao.DTO.Filmes();
+            FilmesSevicoAplicacaoMock = new Tests.Mocks.ServicoAplicacao.DTO.Filmes();
         }
 
         [Fact(DisplayName = "Deve Obter Filmes")]

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace BinaryLab.CopaFilmes.Mocks.Repositorio.Entidades
+namespace BinaryLab.CopaFilmes.Tests.Mocks.Repositorio.Entidades
 {
     public class Filmes
     {

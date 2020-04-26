@@ -27,15 +27,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Filme", "Filme", "{0B0452DF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryLab.CopaFilmes.Filme.ServicoAplicacao", "BinaryLab.CopaFilmes.Filme.ServicoAplicacao\BinaryLab.CopaFilmes.Filme.ServicoAplicacao.csproj", "{852D41A5-0A7A-4151-B8AB-5C8A1A959FE2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryLab.CopaFilmes.Filme.ServicoAplicacao.Tests", "BinaryLab.CopaFilmes.Filme.ServicoAplicacao.Tests\BinaryLab.CopaFilmes.Filme.ServicoAplicacao.Tests.csproj", "{93FF45E8-BF49-4024-905F-B420DFE0FE78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryLab.CopaFilmes.Filme.ServicoAplicacao.UnitTests", "BinaryLab.CopaFilmes.Filme.ServicoAplicacao.UnitTests\BinaryLab.CopaFilmes.Filme.ServicoAplicacao.UnitTests.csproj", "{93FF45E8-BF49-4024-905F-B420DFE0FE78}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryLab.CopaFilmes.Filme.Dominio.Tests", "BinaryLab.CopaFilmes.Filme.Dominio.Tests\BinaryLab.CopaFilmes.Filme.Dominio.Tests.csproj", "{2A40EEC1-979A-4E17-8B5F-D93E4ABD15CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryLab.CopaFilmes.Filme.Dominio.UnitTests", "BinaryLab.CopaFilmes.Filme.Dominio.UnitTests\BinaryLab.CopaFilmes.Filme.Dominio.UnitTests.csproj", "{2A40EEC1-979A-4E17-8B5F-D93E4ABD15CC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCutting", "{1431DB44-D78B-43FD-8225-43A99D15DC88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryLab.CopaFilmes.Mocks", "BinaryLab.CopaFilmes.Mocks\BinaryLab.CopaFilmes.Mocks.csproj", "{3CA45D72-350C-4C27-98B1-6E5A3F03D8E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryLab.CopaFilmes.Tests.Mocks", "BinaryLab.CopaFilmes.Tests.Mocks\BinaryLab.CopaFilmes.Tests.Mocks.csproj", "{3CA45D72-350C-4C27-98B1-6E5A3F03D8E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryLab.CopaFilmes.Repositorio.Tests", "BinaryLab.CopaFilmes.Repositorio.Tests\BinaryLab.CopaFilmes.Repositorio.Tests.csproj", "{8AF0B2A9-6C7B-409B-A626-53F005C5153C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryLab.CopaFilmes.Filme.Repositorio.UnitTests", "BinaryLab.CopaFilmes.Filme.Repositorio.UnitTests\BinaryLab.CopaFilmes.Filme.Repositorio.UnitTests.csproj", "{8AF0B2A9-6C7B-409B-A626-53F005C5153C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryLab.CopaFilmes.Repositorio.Http.UnitTests", "BinaryLab.CopaFilmes.Repositorio.Http.UnitTests\BinaryLab.CopaFilmes.Repositorio.Http.UnitTests.csproj", "{E846FEB5-28F5-4690-A0D1-E9684A731663}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{ED0F95D5-C3BF-457A-8566-32DF29BF9227}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "IntegrationTests", "{D43692C9-5733-4284-B889-5E9DA2FF34E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +85,10 @@ Global
 		{8AF0B2A9-6C7B-409B-A626-53F005C5153C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AF0B2A9-6C7B-409B-A626-53F005C5153C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AF0B2A9-6C7B-409B-A626-53F005C5153C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E846FEB5-28F5-4690-A0D1-E9684A731663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E846FEB5-28F5-4690-A0D1-E9684A731663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E846FEB5-28F5-4690-A0D1-E9684A731663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E846FEB5-28F5-4690-A0D1-E9684A731663}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,14 +101,17 @@ Global
 		{20177159-A4E3-4E35-ABB4-E7A93AA31213} = {06381D43-0343-42AA-A054-737B38D73E9E}
 		{34F3E20F-5C28-4307-94A3-106584EC301C} = {06381D43-0343-42AA-A054-737B38D73E9E}
 		{F22EE77E-26B1-4300-A2DD-DEDFABEF34DE} = {6C413281-904E-4FB6-9947-8A86A29C4E45}
-		{F51EAACC-538E-47C3-AF56-C8D38FDF35B8} = {428EF9A4-992F-41FB-9866-D1E1CE11C53C}
+		{F51EAACC-538E-47C3-AF56-C8D38FDF35B8} = {ED0F95D5-C3BF-457A-8566-32DF29BF9227}
 		{0B0452DF-C99E-43A2-B904-6B9263D5B420} = {F51EAACC-538E-47C3-AF56-C8D38FDF35B8}
 		{852D41A5-0A7A-4151-B8AB-5C8A1A959FE2} = {06381D43-0343-42AA-A054-737B38D73E9E}
 		{93FF45E8-BF49-4024-905F-B420DFE0FE78} = {0B0452DF-C99E-43A2-B904-6B9263D5B420}
 		{2A40EEC1-979A-4E17-8B5F-D93E4ABD15CC} = {0B0452DF-C99E-43A2-B904-6B9263D5B420}
-		{1431DB44-D78B-43FD-8225-43A99D15DC88} = {428EF9A4-992F-41FB-9866-D1E1CE11C53C}
-		{3CA45D72-350C-4C27-98B1-6E5A3F03D8E3} = {1431DB44-D78B-43FD-8225-43A99D15DC88}
+		{1431DB44-D78B-43FD-8225-43A99D15DC88} = {ED0F95D5-C3BF-457A-8566-32DF29BF9227}
+		{3CA45D72-350C-4C27-98B1-6E5A3F03D8E3} = {428EF9A4-992F-41FB-9866-D1E1CE11C53C}
 		{8AF0B2A9-6C7B-409B-A626-53F005C5153C} = {0B0452DF-C99E-43A2-B904-6B9263D5B420}
+		{E846FEB5-28F5-4690-A0D1-E9684A731663} = {1431DB44-D78B-43FD-8225-43A99D15DC88}
+		{ED0F95D5-C3BF-457A-8566-32DF29BF9227} = {428EF9A4-992F-41FB-9866-D1E1CE11C53C}
+		{D43692C9-5733-4284-B889-5E9DA2FF34E5} = {428EF9A4-992F-41FB-9866-D1E1CE11C53C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F33C4609-A6EE-45C7-ADA4-DD49A8A1F284}

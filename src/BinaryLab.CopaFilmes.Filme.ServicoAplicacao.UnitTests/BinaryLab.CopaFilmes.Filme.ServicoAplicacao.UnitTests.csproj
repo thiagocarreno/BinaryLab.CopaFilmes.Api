@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BinaryLab.CopaFilmes.Filme.ServicoAplicacao\BinaryLab.CopaFilmes.Filme.ServicoAplicacao.csproj" />
-    <ProjectReference Include="..\BinaryLab.CopaFilmes.Mocks\BinaryLab.CopaFilmes.Mocks.csproj" />
+    <ProjectReference Include="..\BinaryLab.CopaFilmes.Tests.Mocks\BinaryLab.CopaFilmes.Tests.Mocks.csproj" />
   </ItemGroup>
 
 </Project>
