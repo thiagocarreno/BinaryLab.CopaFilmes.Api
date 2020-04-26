@@ -15,12 +15,12 @@ namespace BinaryLab.CopaFilmes.Repositorio.Abstracoes
         where TEntidade : class, IEntidade<TChave>
         where TChave : IEquatable<TChave>
     {
+        IEnumerable<TEntidade> Obter();
+        Task<IEnumerable<TEntidade>> ObterAsync(CancellationToken cancellationToken = default);
         TEntidade Obter(TChave chave);
         Task<TEntidade> ObterAsync(TChave chave, CancellationToken cancellationToken = default);
         IEnumerable<TEntidade> Obter(TChave[] chaves);
         Task<IEnumerable<TEntidade>> ObterAsync(TChave[] chaves, CancellationToken cancellationToken = default);
-        IEnumerable<TEntidade> Obter();
-        Task<IEnumerable<TEntidade>> ObterAsync(CancellationToken cancellationToken = default);
         IEnumerable<TEntidade> Find(Expression<Func<TEntidade, bool>> predicate);
         Task<IEnumerable<TEntidade>> FindAsync(Expression<Func<TEntidade, bool>> predicate, CancellationToken cancellationToken = default);
     }

@@ -13,7 +13,8 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http
         where TEntidade : class, IEntidade<int>
     {
 
-        public RepositorioHttpLeitura()
+        public RepositorioHttpLeitura(IHttpClientFactory httpClientFactory, Uri uriRecurso) : base(httpClientFactory,
+            uriRecurso)
         {
         }
     }
@@ -23,9 +24,22 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http
         where TChave : IEquatable<TChave>
     {
         protected readonly IHttpClientFactory _httpClientFactory;
+        protected readonly Uri _uriRecurso;
 
-        public RepositorioHttpLeitura()
+        public RepositorioHttpLeitura(IHttpClientFactory httpClientFactory, Uri uriRecurso)
         {
+            _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
+            _uriRecurso = uriRecurso ?? throw new ArgumentNullException(nameof(uriRecurso));
+        }
+
+        public IEnumerable<TEntidade> Obter()
+        {
+            _httpClientFactory.CreateClient()
+        }
+
+        public async Task<IEnumerable<TEntidade>> ObterAsync(CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
         }
 
         public TEntidade Obter(TChave chave)
@@ -46,16 +60,6 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http
         public async Task<IEnumerable<TEntidade>> ObterAsync(TChave[] chaves, CancellationToken cancellationToken = default)
         {
             throw new NotSupportedException();
-        }
-
-        public IEnumerable<TEntidade> Obter()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IEnumerable<TEntidade>> ObterAsync(CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
         }
 
         public IEnumerable<TEntidade> Find(Expression<Func<TEntidade, bool>> predicate)
