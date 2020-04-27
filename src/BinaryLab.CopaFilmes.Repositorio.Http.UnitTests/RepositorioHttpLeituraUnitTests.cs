@@ -174,14 +174,14 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http.UnitTests
         [InlineData("Vingadores: Guerra Infinita")]
         public void DeveObterConteudoFiltradoPorNomeDeApi(string nome)
         {
-            var retornoMock = _filmesMock.Lista.Where(i => i.Nome.Equals(nome));
+            var retornoMock = _filmesMock.Lista.Where(i => i.Titulo.Equals(nome));
 
             var httpContextoMock = new Mock<IHttpContexto>();
             httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(_repositorioHttp.MensagemSucesso));
 
             var repositorioHttp = new RepositorioHttpLeitura<Filme.Repositorio.Entidades.Filme, string>(httpContextoMock.Object);
-            var retorno = repositorioHttp.Find(i => i.Nome.Equals(nome));
+            var retorno = repositorioHttp.Find(i => i.Titulo.Equals(nome));
 
             retorno.Should().NotBeNull().And.BeEquivalentTo(retornoMock);
         }

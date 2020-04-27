@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BinaryLab.CopaFilmes.Http\BinaryLab.CopaFilmes.Http.csproj" />
-    <ProjectReference Include="..\BinaryLab.CopaFilmes.Validacao\BinaryLab.CopaFilmes.Validacao.csproj" />
   </ItemGroup>
 
 </Project>

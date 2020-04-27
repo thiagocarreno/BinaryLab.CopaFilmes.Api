@@ -15,7 +15,7 @@ namespace BinaryLab.CopaFilmes.Tests.Mocks.ServicoAplicacao.DTO
             Lista = filmesDominio.Lista.Select(f => new Filme.ServicoAplicacao.DTO.Filme()
             {
                 Id = f.Id,
-                Nome = f.Nome,
+                Titulo = f.Titulo,
                 Ano = f.Ano
             });
 
@@ -24,7 +24,7 @@ namespace BinaryLab.CopaFilmes.Tests.Mocks.ServicoAplicacao.DTO
             Vencedores = filmesDominio.VencedoresSegundaRodada.Select(f => new Filme.ServicoAplicacao.DTO.Filme()
             {
                 Id = f.Id,
-                Nome = f.Nome,
+                Titulo = f.Titulo,
                 Ano = f.Ano
             });
         }

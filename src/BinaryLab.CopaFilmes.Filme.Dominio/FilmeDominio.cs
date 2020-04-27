@@ -17,7 +17,7 @@ namespace BinaryLab.CopaFilmes.Filme.Dominio
             if (filmes == null)
                 throw new ArgumentNullException(nameof(filmes));
 
-            return filmes.OrderBy(f => f.Nome);
+            return filmes.OrderBy(f => f.Titulo);
         }
 
         public int CalcularDisputas(IEnumerable<Entidades.Filme> filmes) => CalcularDisputasAsync(filmes).Result;

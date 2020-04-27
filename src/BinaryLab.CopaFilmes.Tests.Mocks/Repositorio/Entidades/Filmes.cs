@@ -12,10 +12,10 @@ namespace BinaryLab.CopaFilmes.Tests.Mocks.Repositorio.Entidades
         {
             var filmesDominioMock = new Dominio.Filmes();
             Lista = filmesDominioMock.Lista.Select(f =>
-                Filme.Repositorio.Entidades.Filme.Create(f.Id, f.Nome, f.Ano, f.Nota));
+                Filme.Repositorio.Entidades.Filme.Create(f.Id, f.Titulo, f.Ano, f.Nota));
 
             OitoPrimeiros = filmesDominioMock.OitoPrimeiros.Select(f =>
-                Filme.Repositorio.Entidades.Filme.Create(f.Id, f.Nome, f.Ano, f.Nota));
+                Filme.Repositorio.Entidades.Filme.Create(f.Id, f.Titulo, f.Ano, f.Nota));
         }
     }
 }

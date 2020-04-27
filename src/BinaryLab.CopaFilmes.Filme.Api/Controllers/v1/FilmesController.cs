@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BinaryLab.CopaFilmes.Filme.Api.Controllers.v1
 {
-    //TODO: Implementar Notification Handler
     [ApiController]
     [ApiVersion(Versoes.V1)]
     [Route(RotasPadrao.RotaVersionada)]
@@ -28,22 +27,27 @@ namespace BinaryLab.CopaFilmes.Filme.Api.Controllers.v1
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<ServicoAplicacao.DTO.Filme>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> ObterAsync(CancellationToken cancellationToken = default)
+        public async Task<IActionResult> ObterAsync(CancellationToken cancellationToken)
         {
             var filmes = await _filmeServicoAplicacao.ObterAsync(cancellationToken);
             return Ok(filmes);
         }
 
-        //[HttpGet]
-        //[ProducesResponseType((int)HttpStatusCode.NotFound)]
-        //[ProducesResponseType(typeof(IEnumerable<ServicoAplicacao.DTO.Filme>), (int)HttpStatusCode.OK)]
-        //public async Task<IActionResult> ObterVencedoresAsync([FromBody] string[] idsFilmes, CancellationToken cancellationToken = default)
-        //{
-        //    var vencedores = await _filmeServicoAplicacao.ObterVencedoresAsync(idsFilmes, cancellationToken);
-        //    if (vencedores == null)
-        //        return NotFound();
+        [HttpGet("{idsFilmes}", Name = "ObterVencedoresAsync")]
+        [ProducesResponseType((int)HttpStatusCode.NotAcceptable)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(IEnumerable<ServicoAplicacao.DTO.Filme>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> ObterVencedoresAsync([NotNull] string idsFilmes, CancellationToken cancellationToken)
+        {
+            var idsFilmesArray = idsFilmes.Split(",");
+            if (idsFilmesArray.Length == 0)
+                return new StatusCodeResult((int)HttpStatusCode.NotAcceptable);
 
-        //    return Ok(vencedores);
-        //}
+            var vencedores = await _filmeServicoAplicacao.ObterVencedoresAsync(idsFilmesArray, cancellationToken);
+            if (vencedores == null)
+                return NotFound();
+
+            return Ok(vencedores);
+        }
     }
 }

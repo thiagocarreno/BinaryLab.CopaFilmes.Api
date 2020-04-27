@@ -35,7 +35,7 @@ namespace BinaryLab.CopaFilmes.Tests.Mocks.Dominio
             };
 
             OitoPrimeiros = Lista.Take(8);
-            OitoPrimeirosOrdenados = OitoPrimeiros.OrderBy(f => f.Nome);
+            OitoPrimeirosOrdenados = OitoPrimeiros.OrderBy(f => f.Titulo);
 
             VencedoresPrimeiraRodada = new List<Filme.Dominio.Entidades.Filme>
             {
