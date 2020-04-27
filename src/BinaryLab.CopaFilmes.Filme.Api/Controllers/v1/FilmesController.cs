@@ -1,14 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using BinaryLab.CopaFilmes.Api.Routing;
+using BinaryLab.CopaFilmes.Api.Versioning;
+using BinaryLab.CopaFilmes.Http;
+using Microsoft.AspNetCore.Mvc;
 
-namespace BinaryLab.CopaFilmes.Filme.Api.Controllers
+namespace BinaryLab.CopaFilmes.Filme.Api.Controllers.v1
 {
-    //TODO: Implementar Facilitadores
     //TODO: Implementar Notification Handler
     //TODO: Implementar Chamadas
     //TODO: Implementar IOC
-    [Route("api/[controller]")]
     [ApiController]
+    [ApiVersion(Versoes.V1)]
+    [Route(RotasPadrao.RotaVersionada)]
+    [Produces(TiposConteudo.Json)]
     public class FilmesController : ControllerBase
     {
         [HttpGet]
@@ -17,7 +21,7 @@ namespace BinaryLab.CopaFilmes.Filme.Api.Controllers
             return Ok();
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> ObterVencedoresAsync([FromBody] string[] idsFilmes)
         {
             return Ok();

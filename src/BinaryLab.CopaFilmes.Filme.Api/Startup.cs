@@ -1,6 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using BinaryLab.CopaFilmes.Configuracao;
+using BinaryLab.CopaFilmes.Configuracao.DependencyInjenction;
+using BinaryLab.CopaFilmes.Hospedagem.Construtor;
+using BinaryLab.CopaFilmes.Hospedagem.InjecaoDependencia;
+using BinaryLab.CopaFilmes.Repositorio.Http.InjecaoDependencia;
+using BinaryLab.CopaFilmes.Repositorio.InjecaoDependencia;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,27 +21,17 @@ namespace BinaryLab.CopaFilmes.Filme.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddConfiguracao<ConfiguracaoPadrao>(Configuration)
+                .AddApiServices(GerenciadorConfiguracao<ConfiguracaoPadrao>.Configuracoes?.SwaggerTitle)
+                .AddRepositorio().AddRepositorioHttp();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApiVersionDescriptionProvider provider)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseMvc();
+            env.UseEnvironments(app);
+            app.BuildApiApplication(provider, GerenciadorConfiguracao<ConfiguracaoPadrao>.Configuracoes?.HealthCheckUrl);
         }
     }
 }

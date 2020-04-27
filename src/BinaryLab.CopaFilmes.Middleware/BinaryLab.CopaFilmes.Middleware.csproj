@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Serilog" Version="2.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BinaryLab.CopaFilmes.Http\BinaryLab.CopaFilmes.Http.csproj" />
+    <ProjectReference Include="..\BinaryLab.CopaFilmes.Validacao\BinaryLab.CopaFilmes.Validacao.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.HttpsPolicy" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="4.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BinaryLab.CopaFilmes.Api\BinaryLab.CopaFilmes.Api.csproj" />
+    <ProjectReference Include="..\BinaryLab.CopaFilmes.Logging\BinaryLab.CopaFilmes.Logging.csproj" />
+    <ProjectReference Include="..\BinaryLab.CopaFilmes.Middleware\BinaryLab.CopaFilmes.Middleware.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BinaryLab.CopaFilmes.Repositorio.InjecaoDependencia
 {
-    public static class Extenssoes
+    public static class Extensoes
     {
         public static IServiceCollection AddRepositorio(this IServiceCollection services)
         {
