@@ -7,6 +7,7 @@ using BinaryLab.CopaFilmes.Filme.Repositorio.InjecaoDependencia;
 using BinaryLab.CopaFilmes.Filme.ServicoAplicacao.InjecaoDependencia;
 using BinaryLab.CopaFilmes.Hospedagem.Construtor;
 using BinaryLab.CopaFilmes.Hospedagem.InjecaoDependencia;
+using BinaryLab.CopaFilmes.Repositorio.Http;
 using BinaryLab.CopaFilmes.Repositorio.Http.InjecaoDependencia;
 using BinaryLab.CopaFilmes.Repositorio.InjecaoDependencia;
 using Microsoft.AspNetCore.Builder;
@@ -35,8 +36,20 @@ namespace BinaryLab.CopaFilmes.Filme.Api
                     GerenciadorConfiguracao<AppSettings>.Configuracoes?.RecursosExterno.NomeCliente ?? throw new InvalidOperationException(),
                     GerenciadorConfiguracao<AppSettings>.Configuracoes?.RecursosExterno.Filmes ?? throw new InvalidOperationException())
                 .AddClienteHttp(
-                    GerenciadorConfiguracao<AppSettings>.Configuracoes?.RecursosExterno.NomeCliente ?? throw new InvalidOperationException(),
-                    GerenciadorConfiguracao<AppSettings>.Configuracoes?.RecursosExterno.UrlBase ?? throw new InvalidOperationException())
+                    new ClienteHttpConfiguracao
+                    {
+                        NomeCliente = GerenciadorConfiguracao<AppSettings>.Configuracoes?.RecursosExterno.NomeCliente ?? throw new InvalidOperationException(),
+                        UrlBase = GerenciadorConfiguracao<AppSettings>.Configuracoes?.RecursosExterno.UrlBase ?? throw new InvalidOperationException(),
+                        Retentativas = (int) GerenciadorConfiguracao<AppSettings>.Configuracoes?.RecursosExterno
+                            .Retentativas,
+                        IntervaloRetentativas = (double) GerenciadorConfiguracao<AppSettings>.Configuracoes
+                            ?.RecursosExterno.IntervaloRetentativas,
+                        EventosAntesQuebraCircuitBreaker = (int) GerenciadorConfiguracao<AppSettings>.Configuracoes
+                            ?.RecursosExterno.EventosAntesQuebraCircuitBreaker,
+                        IntervaloCircuitBreaker = (double) GerenciadorConfiguracao<AppSettings>.Configuracoes
+                            ?.RecursosExterno.IntervaloCircuitBreaker,
+                        TempoCicloVida = (double) GerenciadorConfiguracao<AppSettings>.Configuracoes?.RecursosExterno.TempoCicloVida
+                    })
                 .AddFilmeServicoAplicacao().AddFilmeDominio().AddFilmeRepositorio();
         }
 

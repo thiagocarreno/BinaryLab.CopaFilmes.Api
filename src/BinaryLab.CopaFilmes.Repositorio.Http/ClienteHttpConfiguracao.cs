@@ -1,13 +1,10 @@
-﻿using BinaryLab.CopaFilmes.Configuracao;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace BinaryLab.CopaFilmes.Filme.Api.Configuracao
+namespace BinaryLab.CopaFilmes.Repositorio.Http
 {
-    public class AppSettings : ConfiguracaoPadrao
-    {
-        public RecursosExterno RecursosExterno { get; set; }
-    }
-
-    public class RecursosExterno
+    public class ClienteHttpConfiguracao
     {
         public string NomeCliente { get; set; }
         public string UrlBase { get; set; }

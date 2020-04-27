@@ -4,6 +4,8 @@ using BinaryLab.CopaFilmes.Repositorio.Abstracoes;
 using BinaryLab.CopaFilmes.Repositorio.Http.Abstracoes;
 using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
+using Polly;
+using Polly.Extensions.Http;
 
 namespace BinaryLab.CopaFilmes.Repositorio.Http.InjecaoDependencia
 {
@@ -24,16 +26,21 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http.InjecaoDependencia
             return services;
         }
 
-        public static IServiceCollection AddClienteHttp(this IServiceCollection services, [NotNull] string nomeCliente,
-            [NotNull] string urlBase)
+        public static IServiceCollection AddClienteHttp(this IServiceCollection services,
+            [NotNull] ClienteHttpConfiguracao clienteHttpConfiguracao)
         {
-            if (nomeCliente == null)
-                throw new ArgumentNullException(nameof(nomeCliente));
+            if (clienteHttpConfiguracao == null)
+                throw new ArgumentNullException(nameof(clienteHttpConfiguracao));
             
-            if (urlBase == null)
-                throw new ArgumentNullException(nameof(urlBase));
-
-            services.AddHttpClient(nomeCliente, c => c.BaseAddress = new Uri(urlBase));
+            services.AddHttpClient(clienteHttpConfiguracao.NomeCliente,
+                    c => c.BaseAddress = new Uri(clienteHttpConfiguracao.UrlBase))
+                .AddPolicyHandler(ConfigurarRetentativasAsync(clienteHttpConfiguracao.Retentativas,
+                    clienteHttpConfiguracao.IntervaloRetentativas))
+                .AddPolicyHandler(ConfigurarCircuitBreakerAsync(
+                    clienteHttpConfiguracao.EventosAntesQuebraCircuitBreaker,
+                    clienteHttpConfiguracao.IntervaloCircuitBreaker))
+                .SetHandlerLifetime(TimeSpan.FromMinutes(clienteHttpConfiguracao.TempoCicloVida));
+            
             return services;
         }
 
@@ -55,6 +62,21 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http.InjecaoDependencia
             });
 
             return services;
+        }
+
+        private static IAsyncPolicy<HttpResponseMessage> ConfigurarRetentativasAsync(int retentativas, double intervaloRetentativas)
+        {
+            return HttpPolicyExtensions
+                .HandleTransientHttpError()
+                .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
+                .WaitAndRetryAsync(retentativas, intervalo => TimeSpan.FromSeconds(intervaloRetentativas));
+        }
+
+        private static IAsyncPolicy<HttpResponseMessage> ConfigurarCircuitBreakerAsync(int eventosAntesQuebra, double intervalo)
+        {
+            return HttpPolicyExtensions
+                .HandleTransientHttpError()
+                .CircuitBreakerAsync(eventosAntesQuebra, TimeSpan.FromSeconds(intervalo));
         }
     }
 }
