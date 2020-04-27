@@ -1,4 +1,4 @@
-﻿namespace BinaryLab.CopaFilmes.Api.Routing
+﻿namespace BinaryLab.CopaFilmes.Api.Roteamento
 {
     public class RotasPadrao
     {

@@ -6,9 +6,7 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http.Abstracoes
 {
     public interface IHttpContexto
     {
-        string UrlRecurso { get; }
-
         Task<HttpClient> ObterContextoAsync(CancellationToken cancellationToken = default);
-        Task<HttpResponseMessage> ObterAsync(string url, CancellationToken cancellationToken = default);
+        Task<HttpResponseMessage> ObterAsync(CancellationToken cancellationToken = default);
     }
 }

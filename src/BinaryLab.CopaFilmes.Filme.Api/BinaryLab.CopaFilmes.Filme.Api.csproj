@@ -15,8 +15,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BinaryLab.CopaFilmes.Configuracao\BinaryLab.CopaFilmes.Configuracao.csproj" />
+    <ProjectReference Include="..\BinaryLab.CopaFilmes.Filme.ServicoAplicacao\BinaryLab.CopaFilmes.Filme.ServicoAplicacao.csproj" />
     <ProjectReference Include="..\BinaryLab.CopaFilmes.Hospedagem\BinaryLab.CopaFilmes.Hospedagem.csproj" />
-    <ProjectReference Include="..\BinaryLab.CopaFilmes.Repositorio.Http\BinaryLab.CopaFilmes.Repositorio.Http.csproj" />
     <ProjectReference Include="..\BinaryLab.CopaFilmes.Repositorio\BinaryLab.CopaFilmes.Repositorio.csproj" />
   </ItemGroup>
 

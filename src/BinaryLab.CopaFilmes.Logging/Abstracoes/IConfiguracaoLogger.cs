@@ -1,6 +1,6 @@
 ﻿using Serilog;
 
-namespace BinaryLab.CopaFilmes.Logging.Abstractions
+namespace BinaryLab.CopaFilmes.Logging.Abstracoes
 {
     public interface IConfiguracaoLogger
     {

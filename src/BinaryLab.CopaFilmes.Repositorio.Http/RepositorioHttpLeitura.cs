@@ -38,7 +38,7 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http
 
         public virtual async Task<IEnumerable<TEntidade>> ObterAsync(CancellationToken cancellationToken = default)
         {
-            var resposta = await _httpContexto.ObterAsync(_httpContexto.UrlRecurso, cancellationToken);
+            var resposta = await _httpContexto.ObterAsync(cancellationToken);
             return await ConverterRetornoAsync<IEnumerable<TEntidade>>(resposta);
         }
 
@@ -46,8 +46,7 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http
 
         public virtual async Task<TEntidade> ObterAsync(TChave chave, CancellationToken cancellationToken = default)
         {
-            var url = $"{_httpContexto.UrlRecurso}/{chave}";
-            var resposta = await _httpContexto.ObterAsync(url, cancellationToken);
+            var resposta = await _httpContexto.ObterAsync(cancellationToken);
             return await ConverterRetornoAsync<TEntidade>(resposta);
         }
 

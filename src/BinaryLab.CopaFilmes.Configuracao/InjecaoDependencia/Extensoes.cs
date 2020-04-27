@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BinaryLab.CopaFilmes.Configuracao.DependencyInjenction
+namespace BinaryLab.CopaFilmes.Configuracao.InjecaoDependencia
 {
     public static class Extensoes
     {

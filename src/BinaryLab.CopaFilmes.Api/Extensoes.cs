@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using BinaryLab.CopaFilmes.Api.Versioning;
+using BinaryLab.CopaFilmes.Api.Versionamento;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -18,7 +18,7 @@ namespace BinaryLab.CopaFilmes.Api
         public static IServiceCollection AddApi(this IServiceCollection services)
         {
             services.AddCors();
-            services.AddMvcCore().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvcCore().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonFormatters();
             services.AddHealthChecks();
             services.AddHttpContextAccessor();
 

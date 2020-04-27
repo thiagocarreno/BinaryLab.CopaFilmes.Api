@@ -2,6 +2,13 @@
 {
     public class AppSettings
     {
-        public static readonly string UriRecurso = "http://copafilmes.azurewebsites.net/api/filmes";
+        public static RecursoExterno RecursoExterno = new RecursoExterno();
+    }
+
+    public class RecursoExterno
+    {
+        public readonly string UrlBase = "http://copafilmes.azurewebsites.net/api/";
+        public readonly string NomeCliente = "CopaFilmes";
+        public readonly string Filmes = nameof(Filmes);
     }
 }

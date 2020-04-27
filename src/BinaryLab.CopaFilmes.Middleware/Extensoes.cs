@@ -6,7 +6,9 @@ namespace BinaryLab.CopaFilmes.Middleware
     {
         public static IApplicationBuilder UseMiddlewares(this IApplicationBuilder app)
         {
-            app.UseExceptionMiddleware().UseNotificationMiddleware();
+            //TODO: Verificar Notification
+            //app.UseExceptionMiddleware().UseNotificationMiddleware();
+            app.UseExceptionMiddleware();
 
             return app;
         }

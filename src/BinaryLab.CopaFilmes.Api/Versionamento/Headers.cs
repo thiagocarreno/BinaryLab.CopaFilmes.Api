@@ -1,4 +1,4 @@
-﻿namespace BinaryLab.CopaFilmes.Api.Versioning
+﻿namespace BinaryLab.CopaFilmes.Api.Versionamento
 {
     public class Headers
     {

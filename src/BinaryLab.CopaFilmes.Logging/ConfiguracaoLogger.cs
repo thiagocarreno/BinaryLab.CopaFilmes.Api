@@ -1,5 +1,5 @@
 ﻿using System;
-using BinaryLab.CopaFilmes.Logging.Abstractions;
+using BinaryLab.CopaFilmes.Logging.Abstracoes;
 using Microsoft.AspNetCore.Hosting;
 using Serilog;
 using Serilog.Events;

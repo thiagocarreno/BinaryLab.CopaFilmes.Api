@@ -30,7 +30,7 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http.UnitTests
         public void DeveObterTodoConteudoDeApi()
         {
             var httpContextoMock = new Mock<IHttpContexto>();
-            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(_repositorioHttp.MensagemSucesso));
 
             var repositorioHttp = new RepositorioHttpLeitura<Filme.Repositorio.Entidades.Filme, string>(httpContextoMock.Object);
@@ -43,7 +43,7 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http.UnitTests
         public async Task DeveObterTodoConteudoDeApiAsync()
         {
             var httpContextoMock = new Mock<IHttpContexto>();
-            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<string>(),It.IsAny<CancellationToken>()))
+            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(_repositorioHttp.MensagemSucesso));
 
             var repositorioHttp = new RepositorioHttpLeitura<Filme.Repositorio.Entidades.Filme, string>(httpContextoMock.Object);
@@ -62,7 +62,7 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http.UnitTests
         {
             var retornoMock = _filmesMock.Lista.First(i => i.Id.Equals(chave));
             var httpContextoMock = new Mock<IHttpContexto>();
-            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<string>(),It.IsAny<CancellationToken>()))
+            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(_repositorioHttp.GetContent(chave)));
 
             var repositorioHttp = new RepositorioHttpLeitura<Filme.Repositorio.Entidades.Filme, string>(httpContextoMock.Object);
@@ -81,7 +81,7 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http.UnitTests
         {
             var retornoMock = _filmesMock.Lista.First(i => i.Id.Equals(chave));
             var httpContextoMock = new Mock<IHttpContexto>();
-            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<string>(),It.IsAny<CancellationToken>()))
+            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(_repositorioHttp.GetContent(chave)));
 
             var repositorioHttp = new RepositorioHttpLeitura<Filme.Repositorio.Entidades.Filme, string>(httpContextoMock.Object);
@@ -100,7 +100,7 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http.UnitTests
             var filtro = retornoMock.Select(i => i.Id).ToArray();
 
             var httpContextoMock = new Mock<IHttpContexto>();
-            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<string>(),It.IsAny<CancellationToken>()))
+            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(_repositorioHttp.MensagemSucesso));
 
             var repositorioHttp = new RepositorioHttpLeitura<Filme.Repositorio.Entidades.Filme, string>(httpContextoMock.Object);
@@ -119,7 +119,7 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http.UnitTests
             var filtro = retornoMock.Select(i => i.Id).ToArray();
 
             var httpContextoMock = new Mock<IHttpContexto>();
-            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<string>(),It.IsAny<CancellationToken>()))
+            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(_repositorioHttp.MensagemSucesso));
 
             var repositorioHttp = new RepositorioHttpLeitura<Filme.Repositorio.Entidades.Filme, string>(httpContextoMock.Object);
@@ -139,7 +139,7 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http.UnitTests
             var retornoMock = _filmesMock.Lista.Where(i => i.Id.Equals(chave));
 
             var httpContextoMock = new Mock<IHttpContexto>();
-            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<string>(),It.IsAny<CancellationToken>()))
+            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(_repositorioHttp.MensagemSucesso));
 
             var repositorioHttp = new RepositorioHttpLeitura<Filme.Repositorio.Entidades.Filme, string>(httpContextoMock.Object);
@@ -159,7 +159,7 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http.UnitTests
             var retornoMock = _filmesMock.Lista.Where(i => i.Id.Equals(chave));
 
             var httpContextoMock = new Mock<IHttpContexto>();
-            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<string>(),It.IsAny<CancellationToken>()))
+            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(_repositorioHttp.MensagemSucesso));
 
             var repositorioHttp = new RepositorioHttpLeitura<Filme.Repositorio.Entidades.Filme, string>(httpContextoMock.Object);
@@ -177,7 +177,7 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http.UnitTests
             var retornoMock = _filmesMock.Lista.Where(i => i.Nome.Equals(nome));
 
             var httpContextoMock = new Mock<IHttpContexto>();
-            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<string>(),It.IsAny<CancellationToken>()))
+            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(_repositorioHttp.MensagemSucesso));
 
             var repositorioHttp = new RepositorioHttpLeitura<Filme.Repositorio.Entidades.Filme, string>(httpContextoMock.Object);
@@ -195,7 +195,7 @@ namespace BinaryLab.CopaFilmes.Repositorio.Http.UnitTests
             var retornoMock = _filmesMock.Lista.Where(i => i.Id.Equals(nome));
 
             var httpContextoMock = new Mock<IHttpContexto>();
-            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<string>(),It.IsAny<CancellationToken>()))
+            httpContextoMock.Setup(htm => htm.ObterAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(_repositorioHttp.MensagemSucesso));
 
             var repositorioHttp = new RepositorioHttpLeitura<Filme.Repositorio.Entidades.Filme, string>(httpContextoMock.Object);
