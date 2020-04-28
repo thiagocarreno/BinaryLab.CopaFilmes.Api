@@ -18,9 +18,6 @@ Este projeto conta com algumas das melhores práticas à serem seguidas no desen
 docker pull thiagocarreno/binarylab_copafilmes-filme
 ```
 ```sh
-docker run -p 127.0.0.1:80:80 --name copafilmes-filme thiagocarreno/binarylab_copafilmes-filme
+docker run -p 127.0.0.1:80:80 --name copafilmes-filme -d thiagocarreno/binarylab_copafilmes-filme
 ```
-Acesse a url abaixo
-```sh
-127.0.0.1:80
-```
+Acesse a [url](http://127.0.0.1:80/swagger) para testar.
