@@ -9,15 +9,15 @@
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
-    <PackageReference Include="Moq" Version="4.13.1" />
+    <PackageReference Include="Moq" Version="4.14.0" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BinaryLab.CopaFilmes.Repositorio.Http\BinaryLab.CopaFilmes.Repositorio.Http.csproj" />
-    <ProjectReference Include="..\BinaryLab.CopaFilmes.Tests.Mocks\BinaryLab.CopaFilmes.Tests.Mocks.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Service\BinaryLab.CopaFilmes.Filme.Repositorio\BinaryLab.CopaFilmes.Filme.Repositorio.csproj" />
+    <ProjectReference Include="..\..\..\BinaryLab.CopaFilmes.Tests.Mocks\BinaryLab.CopaFilmes.Tests.Mocks.csproj" />
   </ItemGroup>
 
 </Project>

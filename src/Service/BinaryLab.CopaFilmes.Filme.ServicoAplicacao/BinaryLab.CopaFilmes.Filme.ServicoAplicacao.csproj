@@ -5,10 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Automapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CrossCutting\BinaryLab.CopaFilmes.Repositorio\BinaryLab.CopaFilmes.Repositorio.csproj" />
     <ProjectReference Include="..\BinaryLab.CopaFilmes.Filme.Dominio\BinaryLab.CopaFilmes.Filme.Dominio.csproj" />
     <ProjectReference Include="..\BinaryLab.CopaFilmes.Filme.Repositorio\BinaryLab.CopaFilmes.Filme.Repositorio.csproj" />
-    <ProjectReference Include="..\BinaryLab.CopaFilmes.Filme.ServicoAplicacao\BinaryLab.CopaFilmes.Filme.ServicoAplicacao.csproj" />
-    <ProjectReference Include="..\BinaryLab.CopaFilmes.Repositorio\BinaryLab.CopaFilmes.Repositorio.csproj" />
   </ItemGroup>
 
 </Project>

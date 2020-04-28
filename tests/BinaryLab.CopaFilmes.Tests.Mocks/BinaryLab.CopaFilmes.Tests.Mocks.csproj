@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\CrossCutting\BinaryLab.CopaFilmes.Repositorio\BinaryLab.CopaFilmes.Repositorio.csproj" />
+    <ProjectReference Include="..\..\src\Service\BinaryLab.CopaFilmes.Filme.Dominio\BinaryLab.CopaFilmes.Filme.Dominio.csproj" />
+    <ProjectReference Include="..\..\src\Service\BinaryLab.CopaFilmes.Filme.Repositorio\BinaryLab.CopaFilmes.Filme.Repositorio.csproj" />
+    <ProjectReference Include="..\..\src\Service\BinaryLab.CopaFilmes.Filme.ServicoAplicacao\BinaryLab.CopaFilmes.Filme.ServicoAplicacao.csproj" />
+  </ItemGroup>
+
+</Project>

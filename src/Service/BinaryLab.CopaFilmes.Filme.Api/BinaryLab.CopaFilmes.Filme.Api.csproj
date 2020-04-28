@@ -14,10 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BinaryLab.CopaFilmes.Configuracao\BinaryLab.CopaFilmes.Configuracao.csproj" />
+    <ProjectReference Include="..\..\CrossCutting\BinaryLab.CopaFilmes.Configuracao\BinaryLab.CopaFilmes.Configuracao.csproj" />
+    <ProjectReference Include="..\..\CrossCutting\BinaryLab.CopaFilmes.Hospedagem\BinaryLab.CopaFilmes.Hospedagem.csproj" />
+    <ProjectReference Include="..\..\CrossCutting\BinaryLab.CopaFilmes.Repositorio\BinaryLab.CopaFilmes.Repositorio.csproj" />
     <ProjectReference Include="..\BinaryLab.CopaFilmes.Filme.ServicoAplicacao\BinaryLab.CopaFilmes.Filme.ServicoAplicacao.csproj" />
-    <ProjectReference Include="..\BinaryLab.CopaFilmes.Hospedagem\BinaryLab.CopaFilmes.Hospedagem.csproj" />
-    <ProjectReference Include="..\BinaryLab.CopaFilmes.Repositorio\BinaryLab.CopaFilmes.Repositorio.csproj" />
   </ItemGroup>
 
 </Project>
