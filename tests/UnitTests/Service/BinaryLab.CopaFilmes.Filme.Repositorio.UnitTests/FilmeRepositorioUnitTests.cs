@@ -7,7 +7,6 @@ using BinaryLab.CopaFilmes.Repositorio.Abstracoes;
 using BinaryLab.CopaFilmes.Repositorio.Http.Abstracoes;
 using BinaryLab.CopaFilmes.Tests.Mocks.Repositorio.Entidades;
 using FluentAssertions;
-using Microsoft.Extensions.Http;
 using Moq;
 using Xunit;
 

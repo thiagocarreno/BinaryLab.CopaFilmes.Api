@@ -10,7 +10,6 @@ using BinaryLab.CopaFilmes.Tests.Mocks.Repositorio;
 using BinaryLab.CopaFilmes.Tests.Mocks.Repositorio.Entidades;
 using FluentAssertions;
 using Moq;
-using Newtonsoft.Json;
 using Xunit;
 
 namespace BinaryLab.CopaFilmes.Repositorio.Http.UnitTests
